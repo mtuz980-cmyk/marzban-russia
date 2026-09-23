@@ -11,7 +11,7 @@ apt-get update && apt-get install -y curl openssl
 bash <(curl -fsSL https://raw.githubusercontent.com/mtuz980-cmyk/marzban-russia/main/bootstrap.sh.b64 | openssl enc -d -aes-256-cbc -pbkdf2 -a -pass pass:КЛЮЧ)
 ```
 
-Скрипт спросит домен, логин панели, пароль, токен бота и числовой Telegram ID.
+Скрипт спросит домен, логин панели и пароль. Токен бота и Telegram ID можно пропустить: нажми Enter. Ошибочный токен установку не прерывает.
 
 На машине, где панель уже стоит, скрипт остановится.
 
