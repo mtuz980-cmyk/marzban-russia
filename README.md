@@ -1,24 +1,15 @@
-# Установка чистой панели
+# Установщики
 
-`bootstrap.sh.b64` — зашифрованный установщик чистого сервера Ubuntu.
+Ключи в репозиторий не входят.
 
-Ключ в репозиторий не входит. Команду с ключом храните отдельно.
+`bootstrap.sh.b64` — прежний зашифрованный установщик.
 
-Запуск от root на новой машине. Домен уже указывает на её белый IP. Открыты порты 22, 80, 443 и 8000–10000.
+`bootstrap-russia-v3.sh.b64` — текущий скрипт `bootstrap-russia.sh` без изменений, тоже зашифрован.
+
+Скачать и запустить текущий скрипт от root, сохранив его в файл:
 
 ```
 apt-get update && apt-get install -y curl openssl
-bash <(curl -fsSL https://raw.githubusercontent.com/mtuz980-cmyk/marzban-russia/main/bootstrap.sh.b64 | openssl enc -d -aes-256-cbc -pbkdf2 -a -pass pass:КЛЮЧ)
+curl -fsSL https://raw.githubusercontent.com/mtuz980-cmyk/marzban-russia/main/bootstrap-russia-v3.sh.b64 | openssl enc -d -aes-256-cbc -pbkdf2 -a -pass pass:КЛЮЧ -out /root/bootstrap-russia-v3.sh
+bash /root/bootstrap-russia-v3.sh
 ```
-
-Скрипт спросит домен, логин панели и пароль. Токен бота и Telegram ID можно пропустить: нажми Enter. Ошибочный токен установку не прерывает.
-
-На машине, где панель уже стоит, скрипт остановится.
-
-Скрипт для зарубежных машин этот репозиторий не содержит. Его создаёт установленная панель и отдаёт по адресу `https://ДОМЕН/join-node.sh`. На ноде спрашивается только короткое имя. Затем на панели:
-
-```
-sudo exit-switch add ИМЯ IP
-```
-
-Пока выхода нет, первая добавленная нода становится основной. Следующие встают запасными.
